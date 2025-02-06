@@ -8,9 +8,11 @@ public class Main{
     static int MAX_PASSWORD = 9999;
     public static void main(String[] args) {
         Random random = new Random();
-        Vault vault = new Vault(random.nextInt(0,MAX_PASSWORD));
+        int randNum = random.nextInt(0,MAX_PASSWORD);
+        Vault vault = new Vault(randNum);
 
-        List<Thread> threads = new ArrayList<>();
+        ArrayList<Thread> threads = new ArrayList<>();
+
         threads.add(new AscendingHackerThread(vault));
         threads.add(new DescendingHackerThread(vault));
         threads.add(new PoliceThread());
@@ -18,7 +20,6 @@ public class Main{
         for(Thread thread : threads){
             thread.start();
         }
-
     }
 
 }
