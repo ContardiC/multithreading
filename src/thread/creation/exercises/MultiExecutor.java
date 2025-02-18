@@ -1,4 +1,4 @@
-package thread.exercise;
+package thread.creation.exercises;
 import java.util.List;
 
 public class MultiExecutor {
