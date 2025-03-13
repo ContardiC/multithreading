@@ -7,5 +7,5 @@ Una race condition (o condizione di competizione) si verifica quando il comporta
 In pratica, accade quando due o più thread accedono simultaneamente a una risorsa (ad esempio, una variabile) senza un'adeguata sincronizzazione, e l'output o lo stato finale del programma varia a seconda di quale thread agisce per primo.
 Questo può portare a comportamenti imprevedibili, bug difficili da diagnosticare o risultati errati.
 
-*Problema  :*
+*Problema :*
 Problema: Il metodo increment() non è protetto, dunque due thread possono tentare di incrementare contemporaneamente il valore di count, portando a risultati finali sotto il valore atteso (2000).
