@@ -1,6 +1,7 @@
 package thread.sync;
 
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
 
 public class SemaphoreTryAcquireExample {
 
@@ -17,21 +18,26 @@ public class SemaphoreTryAcquireExample {
         public void run() {
             System.out.println(name + " sta tentando di accedere alla risorsa...");
 
-            if (semaphore.tryAcquire()) {
-                try {
-                    System.out.println(name + " ha ottenuto accesso alla risorsa.");
+            try {
+                if (semaphore.tryAcquire(2, 1, TimeUnit.MILLISECONDS) == true) {
+                    try {
+                        System.out.println(name + " ha ottenuto accesso alla risorsa.");
 
-                    Thread.sleep(2000);
+                        Thread.sleep(2000);
 
-                    System.out.println(name + " ha finito di usare la risorsa.");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } finally {
-                    semaphore.release();
-                    System.out.println(name + " ha rilasciato la risorsa.");
+                        System.out.println(name + " ha finito di usare la risorsa.");
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } finally {
+                        semaphore.release();
+                        System.out.println(name + " ha rilasciato la risorsa.");
+                    }
+                } else {
+                    System.out.println(name + " NON ha potuto accedere alla risorsa (occupata).");
                 }
-            } else {
-                System.out.println(name + " NON ha potuto accedere alla risorsa (occupata).");
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
         }
     }

@@ -23,14 +23,13 @@ public class SemaphoreExample {
                 semaphore.acquire();
                 System.out.println(name + " ha ottenuto accesso alla risorsa.");
 
-                
+                // simula un task 
                 Thread.sleep(2000);
 
                 System.out.println(name + " ha finito di usare la risorsa.");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
-                
                 semaphore.release();
                 System.out.println(name + " ha rilasciato la risorsa.");
             }
@@ -38,7 +37,7 @@ public class SemaphoreExample {
     }
 
     public static void main(String[] args) {
-       
+    
         for (int i = 1; i <= 5; i++) {
             new Worker("Thread-" + i).start();
         }
